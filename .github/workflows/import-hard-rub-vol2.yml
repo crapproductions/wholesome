@@ -1,0 +1,39 @@
+name: Import Hard Rub Vol. 2 artwork
+on:
+  push:
+    paths:
+      - '.github/workflows/import-hard-rub-vol2.yml'
+permissions:
+  contents: write
+jobs:
+  import-artwork:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download supplied original artwork
+        env:
+          ARTWORK_URL: 'https://at.adobe.com/n2T0m0aCRgRUtQEK'
+        run: |
+          mkdir -p assets
+          curl --fail --location --retry 3 --silent --show-error "$ARTWORK_URL" --output assets/hard-rub-vol2-download
+          test "$(stat -c%s assets/hard-rub-vol2-download)" -gt 100000
+          python3 - <<'PY'
+          from pathlib import Path
+          data = Path("assets/hard-rub-vol2-download").read_bytes()
+          if data[:3] == bytes.fromhex("ffd8ff") and data[-2:] == bytes.fromhex("ffd9"):
+              path = Path("assets/hard-rub-vol2.jpg")
+          elif data[:8] == bytes.fromhex("89504e470d0a1a0a"):
+              path = Path("assets/hard-rub-vol2.png")
+          else:
+              raise ValueError("Downloaded file is not valid JPEG or PNG artwork")
+          path.write_bytes(data)
+          Path("assets/hard-rub-vol2-download").unlink()
+          print("Verified artwork:", path.name, len(data), "bytes")
+          PY
+      - name: Commit artwork to website assets
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/hard-rub-vol2.*
+          git commit -m "Add original Hard Rub Vol. 2 artwork"
+          git push
