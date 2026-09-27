@@ -25,6 +25,7 @@
     .release-pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; margin-top: 44px; }
 
     .exhibitions { width: min(100%, 460px); margin-top: 92px; }
+    .exhibition-video { display: block; width: 100%; margin-bottom: 14px; background: #000; }
     .exhibition-title { margin: 0; font-size: clamp(16px, 1.65vw, 20px); line-height: 1.3; font-weight: 700; }
     .exhibition-location, .exhibition-credit { margin: 6px 0 0; font-size: clamp(13px, 1.25vw, 16px); line-height: 1.4; }
     .exhibition-credit { margin-top: 10px; }
@@ -81,6 +82,7 @@
       <section class="year" aria-labelledby="year-2018">
         <h2 id="year-2018">2018</h2>
         <article class="exhibition">
+          <video class="exhibition-video" controls playsinline loop preload="metadata" poster="assets/perception-poster.jpg"><source src="assets/perception-exhibition.mp4" type="video/mp4"></video>
           <h3 class="exhibition-title">Perception Exhibition</h3>
           <p class="exhibition-location">@ Asia Culture Center</p>
           <p class="exhibition-credit">(co-worked with JungchoongJin, Park Seunghyuk)</p>
