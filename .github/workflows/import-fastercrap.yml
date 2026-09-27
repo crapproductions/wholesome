@@ -1,0 +1,33 @@
+name: Import 2018 Fastercrap artwork
+on:
+  push:
+    paths:
+      - '.github/workflows/import-fastercrap.yml'
+permissions:
+  contents: write
+jobs:
+  import-artwork:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download original artwork
+        env:
+          ARTWORK_URL: 'https://at.adobe.com/rIt8KkQBa9y847eZ'
+        run: |
+          mkdir -p assets
+          curl --fail --location --retry 3 --silent --show-error "$ARTWORK_URL" --output assets/fastercrap-for-everythingelse.jpg
+          test "$(stat -c%s assets/fastercrap-for-everythingelse.jpg)" -gt 100000
+          file assets/fastercrap-for-everythingelse.jpg
+          python3 - <<'PY'
+          from pathlib import Path
+          data = Path('assets/fastercrap-for-everythingelse.jpg').read_bytes()
+          assert data[:3] == bytes.fromhex('ffd8ff') and data[-2:] == bytes.fromhex('ffd9')
+          print('Valid JPEG artwork:', len(data), 'bytes')
+          PY
+      - name: Commit artwork
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/fastercrap-for-everythingelse.jpg
+          git commit -m "Add original Fastercrap artwork"
+          git push
