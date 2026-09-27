@@ -3,6 +3,7 @@ on:
   push:
     paths:
       - .github/workflows/import-perception.yml
+      - index.html
 permissions:
   contents: write
 jobs:
