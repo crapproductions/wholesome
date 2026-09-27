@@ -25,6 +25,9 @@
     .release-image { display: block; width: 100%; height: auto; }
     .release--hard-rub { margin-top: 44px; }
     .release-pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; margin-top: 44px; }
+    .release--video { width: 100%; }
+    .video-embed { display: block; width: 100%; aspect-ratio: 16 / 9; border: 0; background: #111; }
+    .release-role { margin: 8px 0 0; font-size: clamp(13px, 1.25vw, 16px); line-height: 1.4; }
 
     .exhibitions { width: min(100%, 460px); margin-top: 92px; }
     .fastercrap-artwork { width: min(100%, 300px); margin: 0 0 50px; }
@@ -86,6 +89,15 @@
         <figure class="release release--single release--hard-rub">
           <img class="release-image" src="assets/hard-rub-reissue.jpg" width="1125" height="1125" loading="lazy" alt="Blue DJ Dream Dog Hard Rub cassette and sleeve">
           <figcaption>DJ Dream Dog 'Hard Rub Vol. I / II', Ormolyca Reissue</figcaption>
+        </figure>
+      </section>
+
+      <section class="year" aria-labelledby="year-2021">
+        <h2 id="year-2021">2021</h2>
+        <figure class="release release--video">
+          <iframe class="video-embed" src="https://www.youtube-nocookie.com/embed/hrMyOYXaEUM" title="Dead Man Calling x Vans - Playground Junkie" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+          <figcaption>Dead Man Calling × Vans 'Playground Junkie'</figcaption>
+          <p class="release-role">Original Music &amp; Production — Wholesome</p>
         </figure>
       </section>
 
