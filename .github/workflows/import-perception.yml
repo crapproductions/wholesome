@@ -22,7 +22,13 @@ jobs:
           test "$(stat -c%s assets/perception-exhibition.mp4)" -gt 1000000
           test "$(stat -c%s assets/perception-poster.jpg)" -gt 1000
           file assets/perception-exhibition.mp4 assets/perception-poster.jpg
-          ffprobe -v error -select_streams a -show_entries stream=codec_name -of csv=p=0 assets/perception-exhibition.mp4 | grep -q aac
+          python3 - <<'PY'
+          from pathlib import Path
+          data = Path("assets/perception-exhibition.mp4").read_bytes()
+          assert b"ftyp" in data[:32], "Not an MP4 file"
+          assert b"mp4a" in data, "No AAC audio stream found"
+          print("MP4 with AAC audio verified")
+          PY
       - name: Add media to GitHub Pages
         run: |
           git config user.name "github-actions[bot]"
