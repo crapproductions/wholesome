@@ -29,7 +29,9 @@
     .release-pair--2022 { margin-top: 0; }
     .release-pair--2022 .release figcaption { font-size: clamp(7px, 2vw, 11px); letter-spacing: -.04em; line-height: 1.35; white-space: nowrap; }
     .release--video { width: 100%; }
-    .release--stacked { margin-top: 44px; }
+    .release--video-featured { width: 100%; }
+    .release-pair--videos { margin-top: 44px; }
+    .release-pair--videos .release figcaption { font-size: clamp(10px, 1.7vw, 13px); white-space: nowrap; }
     .video-embed { display: block; width: 100%; aspect-ratio: 16 / 9; border: 0; background: #111; }
     .release-role { margin: 8px 0 0; font-size: clamp(13px, 1.25vw, 16px); line-height: 1.4; }
 
@@ -51,7 +53,8 @@
       .release-pair--2022 { margin-top: 0; }
       .release--hard-rub { margin-top: 36px; }
       .release--kid-blast { margin-top: 36px; }
-      .release--stacked { margin-top: 36px; }
+      .release-pair--videos { margin-top: 36px; }
+      .release-pair--videos .release figcaption { font-size: clamp(9px, 2.5vw, 12px); }
       .release figcaption { font-size: clamp(12px, 3.4vw, 15px); }
       .year + .year { margin-top: 76px; }
       .exhibitions { margin-top: 76px; }
@@ -149,16 +152,22 @@
 
       <section class="year" aria-labelledby="year-2021">
         <h2 id="year-2021">2021</h2>
-        <figure class="release release--video">
+        <figure class="release release--video release--video-featured">
           <iframe class="video-embed" src="https://www.youtube-nocookie.com/embed/hrMyOYXaEUM" title="Dead Man Calling x Vans - Playground Junkie" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
           <figcaption>Dead Man Calling × Vans 'Playground Junkie'</figcaption>
           <p class="release-role">Original Music &amp; Production — Wholesome</p>
         </figure>
 
-        <figure class="release release--video release--stacked">
-          <iframe class="video-embed" src="https://www.youtube-nocookie.com/embed/Gz2IvNDICSM" title="Kid Blast - Sense MV" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-          <figcaption>Kid Blast 'Sense' MV</figcaption>
-        </figure>
+        <div class="release-pair release-pair--videos">
+          <figure class="release release--video">
+            <iframe class="video-embed" src="https://www.youtube-nocookie.com/embed/Gz2IvNDICSM" title="Kid Blast - Sense MV" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            <figcaption>Kid Blast 'Sense' MV</figcaption>
+          </figure>
+          <figure class="release release--video">
+            <iframe class="video-embed" src="https://www.youtube-nocookie.com/embed/bR4F5Ts5cYA" title="Kid Blast - Intro MV" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            <figcaption>Kid Blast 'Intro' MV</figcaption>
+          </figure>
+        </div>
       </section>
 
       <section class="year" aria-labelledby="year-2020">
