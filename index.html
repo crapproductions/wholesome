@@ -80,6 +80,22 @@
         white-space: normal;
       }
       .discography .release--video { grid-column: span 2; }
+
+      /* Keep the 2021 video feature layout intact on desktop:
+         one full-width featured video, then two videos side by side. */
+      .discography .year[aria-labelledby="year-2021"] .release--video-featured {
+        grid-column: 1 / -1;
+      }
+      .discography .year[aria-labelledby="year-2021"] .release-pair--videos {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 28px;
+        grid-column: 1 / -1;
+        margin-top: 0;
+      }
+      .discography .year[aria-labelledby="year-2021"] .release-pair--videos .release--video {
+        grid-column: auto;
+      }
     }
   </style>
 </head>
