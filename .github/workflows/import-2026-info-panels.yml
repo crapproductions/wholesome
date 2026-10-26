@@ -1,0 +1,32 @@
+name: Import Canopy and Coil info panels
+on:
+  push:
+    paths:
+      - '.github/workflows/import-2026-info-panels.yml'
+permissions:
+  contents: write
+jobs:
+  import-panels:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download uploaded info panels
+        run: |
+          mkdir -p assets
+          curl --fail --location --retry 3 --silent --show-error "https://at.adobe.com/SNPZ3pFnNQ1sPQy7" --output assets/canopy-laughter-info.png
+          curl --fail --location --retry 3 --silent --show-error "https://at.adobe.com/U72FkOHcgMb9DXGP" --output assets/coil-breaks-info.png
+          python3 - <<'PY'
+          from pathlib import Path
+          for p in [Path("assets/canopy-laughter-info.png"), Path("assets/coil-breaks-info.png")]:
+              data=p.read_bytes()
+              assert data[:8] == b'\x89PNG\r\n\x1a\n', f"Invalid PNG: {p}"
+              assert len(data) > 50000, f"Too small: {p}"
+              print(p, len(data))
+          PY
+      - name: Commit panels
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/canopy-laughter-info.png assets/coil-breaks-info.png
+          git commit -m "Add Canopy Laughter and Coil Breaks info panels"
+          git push
