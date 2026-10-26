@@ -22,27 +22,47 @@
     .portrait { display: block; width: 100%; height: auto; }
     .profile-meta {
       display: grid;
-      grid-template-columns: minmax(0, 1.15fr) minmax(0, .95fr) minmax(0, .8fr);
-      gap: 42px;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 56px;
       align-items: start;
-      margin-top: 24px;
+      margin-top: 28px;
     }
-    .profile-column { min-width: 0; }
-    .profile h1 { margin: 0; font-size: clamp(23px, 2.35vw, 32px); line-height: 1.16; font-weight: 500; letter-spacing: -.025em; }
-    .profile-name { font-size: .67em; font-weight: 200; letter-spacing: -.015em; white-space: nowrap; }
-    .profile p { margin: 12px 0 0; font-size: clamp(11px, 1.23vw, 17px); font-weight: 200; line-height: 1.45; letter-spacing: -.012em; }
+    .profile-column {
+      min-width: 0;
+      text-align: center;
+    }
+    .profile-column--identity { transform: translateY(0); }
+    .profile-column--contact { transform: translateY(8px); }
+    .profile-column--links { transform: translateY(-2px); }
+
+    .profile h1,
     .profile-column h2 {
-      margin: 0 0 12px;
-      font-size: clamp(15px, 1.45vw, 20px);
-      line-height: 1.2;
+      margin: 0;
+      font-size: clamp(23px, 2.35vw, 32px);
+      line-height: 1.16;
       font-weight: 500;
-      letter-spacing: -.015em;
+      letter-spacing: -.025em;
     }
+    .profile-name {
+      display: block;
+      margin-top: 12px;
+      font-size: .46em;
+      font-weight: 200;
+      line-height: 1.35;
+      letter-spacing: -.01em;
+      white-space: nowrap;
+    }
+    .profile p,
     .profile-column a {
-      color: #111;
-      font-size: clamp(11px, 1.15vw, 15px);
+      font-size: clamp(11px, 1.23vw, 17px);
       font-weight: 200;
       line-height: 1.45;
+      letter-spacing: -.012em;
+    }
+    .profile p { margin: 12px 0 0; }
+    .profile-column h2 { margin-bottom: 16px; }
+    .profile-column a {
+      color: #111;
       text-decoration: none;
       overflow-wrap: anywhere;
     }
@@ -50,7 +70,7 @@
     .profile-column--links nav {
       display: flex;
       flex-direction: column;
-      align-items: flex-start;
+      align-items: center;
       gap: 2px;
     }
 
@@ -95,13 +115,19 @@
       main { padding: 20px 18px 88px; }
       .profile-meta {
         grid-template-columns: 1fr;
-        gap: 26px;
+        gap: 28px;
         margin-top: 21px;
       }
-      .profile h1 { margin-top: 0; font-size: clamp(21px, 5.8vw, 27px); }
-      .profile p { margin-top: 10px; font-size: clamp(10px, 2.95vw, 14px); }
-      .profile-column h2 { margin-bottom: 8px; }
+      .profile-column--identity,
+      .profile-column--contact,
+      .profile-column--links { transform: none; }
+      .profile h1,
+      .profile-column h2 { font-size: clamp(21px, 5.8vw, 27px); }
+      .profile-name { margin-top: 9px; font-size: .48em; }
+      .profile p,
       .profile-column a { font-size: clamp(10px, 2.95vw, 14px); }
+      .profile p { margin-top: 10px; }
+      .profile-column h2 { margin-bottom: 10px; }
       .discography { margin-top: 78px; }
       .year h2 { margin-bottom: 24px; }
       .release-pair { gap: 14px; margin-top: 36px; }
