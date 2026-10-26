@@ -20,9 +20,39 @@
     main { width: 100%; min-height: 100vh; padding: 28px clamp(18px, 4vw, 56px) 120px; }
     .profile { width: min(100%, 860px); }
     .portrait { display: block; width: 100%; height: auto; }
-    .profile h1 { margin: 24px 0 0; font-size: clamp(23px, 2.35vw, 32px); line-height: 1.16; font-weight: 500; letter-spacing: -.025em; }
+    .profile-meta {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(0, .95fr) minmax(0, .8fr);
+      gap: 42px;
+      align-items: start;
+      margin-top: 24px;
+    }
+    .profile-column { min-width: 0; }
+    .profile h1 { margin: 0; font-size: clamp(23px, 2.35vw, 32px); line-height: 1.16; font-weight: 500; letter-spacing: -.025em; }
     .profile-name { font-size: .67em; font-weight: 200; letter-spacing: -.015em; white-space: nowrap; }
-    .profile p { margin: 12px 0 0; font-size: clamp(11px, 1.23vw, 17px); font-weight: 200; line-height: 1.3; letter-spacing: -.012em; white-space: nowrap; }
+    .profile p { margin: 12px 0 0; font-size: clamp(11px, 1.23vw, 17px); font-weight: 200; line-height: 1.45; letter-spacing: -.012em; }
+    .profile-column h2 {
+      margin: 0 0 12px;
+      font-size: clamp(15px, 1.45vw, 20px);
+      line-height: 1.2;
+      font-weight: 500;
+      letter-spacing: -.015em;
+    }
+    .profile-column a {
+      color: #111;
+      font-size: clamp(11px, 1.15vw, 15px);
+      font-weight: 200;
+      line-height: 1.45;
+      text-decoration: none;
+      overflow-wrap: anywhere;
+    }
+    .profile-column a:hover { text-decoration: underline; }
+    .profile-column--links nav {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 2px;
+    }
 
     .discography { width: min(100%, 460px); margin-top: 104px; }
     .year + .year { margin-top: 92px; }
@@ -63,8 +93,15 @@
     .exhibition-credit { margin-top: 10px; }
     @media (max-width: 600px) {
       main { padding: 20px 18px 88px; }
-      .profile h1 { margin-top: 21px; font-size: clamp(21px, 5.8vw, 27px); }
+      .profile-meta {
+        grid-template-columns: 1fr;
+        gap: 26px;
+        margin-top: 21px;
+      }
+      .profile h1 { margin-top: 0; font-size: clamp(21px, 5.8vw, 27px); }
       .profile p { margin-top: 10px; font-size: clamp(10px, 2.95vw, 14px); }
+      .profile-column h2 { margin-bottom: 8px; }
+      .profile-column a { font-size: clamp(10px, 2.95vw, 14px); }
       .discography { margin-top: 78px; }
       .year h2 { margin-bottom: 24px; }
       .release-pair { gap: 14px; margin-top: 36px; }
@@ -143,8 +180,28 @@
   <main>
     <section class="profile" aria-label="Artist profile">
       <img class="portrait" src="assets/profile-header.png" width="2048" height="1022" alt="Wholesome profile collage">
-      <h1>Wholesome <span class="profile-name">(H. Saebyeog)</span></h1>
-      <p>Lives In Seoul, Specialized in Making Music &amp; Love</p>
+
+      <div class="profile-meta">
+        <div class="profile-column profile-column--identity">
+          <h1>Wholesome <span class="profile-name">(H. Saebyeog)</span></h1>
+          <p>Lives In Seoul, Specialized in Making Music &amp; Love</p>
+        </div>
+
+        <div class="profile-column profile-column--contact">
+          <h2>CONTACT</h2>
+          <a href="mailto:crapproductions66@gmail.com">crapproductions66@gmail.com</a>
+        </div>
+
+        <div class="profile-column profile-column--links">
+          <h2>EXTERNAL LINKS</h2>
+          <nav aria-label="External links">
+            <a href="https://music.apple.com/artist/wholesome/1825378378" target="_blank" rel="noopener noreferrer">AppleMusic</a>
+            <a href="https://wholesome2069.bandcamp.com/" target="_blank" rel="noopener noreferrer">Bandcamp</a>
+            <a href="https://crap.productions/" target="_blank" rel="noopener noreferrer">Crapproductions</a>
+            <a href="https://open.spotify.com/artist/2CS0M0pMCz8FywyIWzu6pc" target="_blank" rel="noopener noreferrer">Spotify</a>
+          </nav>
+        </div>
+      </div>
     </section>
 
     <section class="discography" aria-label="Discography">
