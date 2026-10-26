@@ -1,0 +1,32 @@
+name: Import new profile image
+on:
+  push:
+    paths:
+      - '.github/workflows/import-profile-image.yml'
+permissions:
+  contents: write
+jobs:
+  import-profile:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download uploaded profile PNG
+        env:
+          PROFILE_URL: 'https://at.adobe.com/w3yqw5FpBNYFwU8P'
+        run: |
+          mkdir -p assets
+          curl --fail --location --retry 3 --silent --show-error "$PROFILE_URL" --output assets/profile-new.png
+          test "$(stat -c%s assets/profile-new.png)" -gt 50000
+          python3 - <<'PY'
+          from pathlib import Path
+          data=Path("assets/profile-new.png").read_bytes()
+          assert data[:8] == b'\x89PNG\r\n\x1a\n', "Invalid PNG"
+          print("Verified PNG:", len(data), "bytes")
+          PY
+      - name: Commit profile image
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/profile-new.png
+          git commit -m "Add new Wholesome profile image"
+          git push
