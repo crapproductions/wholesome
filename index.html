@@ -103,8 +103,9 @@
     .video-embed { display: block; width: 100%; aspect-ratio: 16 / 9; border: 0; background: #111; }
     .release-role { margin: 8px 0 0; font-size: clamp(13px, 1.25vw, 16px); line-height: 1.4; }
 
-    .exhibitions { width: min(100%, 460px); margin-top: 92px; }
-    .fastercrap-artwork { width: min(100%, 300px); margin: 0 0 50px; }
+    .exhibitions { width: min(100%, 460px); margin: 92px auto 0; }
+    .fastercrap-artwork { width: 100%; margin: 0 0 50px; }
+    .exhibition { width: 100%; }
     .fastercrap-artwork img { display: block; width: 100%; height: auto; }
     .fastercrap-artwork figcaption { margin-top: 12px; font-size: clamp(8px, 2vw, 13px); font-weight: 400; line-height: 1.25; letter-spacing: -.035em; white-space: nowrap; }
     .exhibition-video { display: block; width: 100%; margin-bottom: 14px; background: #000; }
@@ -199,6 +200,18 @@
         gap: 28px;
         width: 100%;
         margin-top: 44px;
+      }
+
+      /* 2018 follows the same centered catalogue width as the discography above. */
+      .exhibitions {
+        width: min(100%, 860px);
+        margin-inline: auto;
+      }
+      .exhibitions .year,
+      .fastercrap-artwork,
+      .exhibition {
+        width: 100%;
+        max-width: none;
       }
     }  </style>
 </head>
